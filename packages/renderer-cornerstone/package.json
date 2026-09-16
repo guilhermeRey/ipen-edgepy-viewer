@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@cornerstonejs/core": "^4.22.4",
-    "@cornerstonejs/dicom-image-loader": "^4.22.4",
+    "@cornerstonejs/dicom-image-loader": "^5.8.2",
     "@pycom-next/core": "0.2.0",
     "@pycom-next/dicom": "0.2.0",
     "@pycom-next/react-viewer": "0.2.0",
