@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "agents": [
+    {
+      "name": "viewer-context-summary",
+      "version": "0.1.0",
+      "module": "viewer_context_summary",
+      "displayName": "Viewer Context Summary",
+      "description": "Example local Python agent that summarizes the active EdgePy Viewer context.",
+      "capabilities": ["viewer-context", "diagnostics"],
+      "entrypoint": "process",
+      "requiresHumanValidation": false
+    },
+    {
+      "name": "dose-statistics",
+      "version": "0.1.0",
+      "module": "dose_statistics",
+      "displayName": "Dose Statistics",
+      "description": "Computes basic statistics from a real MHD/RAW dose volume passed to Pyodide.",
+      "capabilities": ["dose-volume", "mhd-raw", "statistics"],
+      "entrypoint": "process",
+      "requiresHumanValidation": true
+    }
+  ]
+}

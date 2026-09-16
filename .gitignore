@@ -1,0 +1,25 @@
+.DS_Store
+node_modules/
+dist/
+dist-hosted/
+dist-release/
+site/
+.venv/
+coverage/
+.vite/
+.env
+.env.*
+!.env.example
+*.log
+
+# Clinical and volumetric data must not be committed.
+*.dcm
+*.dicom
+*.ima
+*.IMA
+*.mhd
+*.raw
+*.nii
+*.nii.gz
+*.nrrd
+*.zip

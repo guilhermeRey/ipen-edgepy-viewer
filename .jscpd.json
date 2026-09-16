@@ -1,0 +1,19 @@
+{
+  "threshold": 5,
+  "minLines": 5,
+  "minTokens": 50,
+  "mode": "mild",
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/dist-hosted/**",
+    "**/site/**",
+    "**/build/**",
+    "**/docs/assets/*.svg",
+    "**/.venv/**",
+    "**/coverage/**",
+    "**/.vite/**",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}

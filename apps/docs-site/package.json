@@ -1,0 +1,13 @@
+{
+  "name": "@pycom/clinical-viewer-next-docs",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.txt",
+    "dev": "node scripts/run-mkdocs.mjs serve --dev-addr 127.0.0.1:8001",
+    "build": "node scripts/run-mkdocs.mjs build --strict",
+    "docs:build": "node scripts/run-mkdocs.mjs build --strict",
+    "test": "node scripts/verify-docs.mjs && node scripts/run-mkdocs.mjs build --strict"
+  }
+}

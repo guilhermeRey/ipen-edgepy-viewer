@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@pycom-next/core": ["packages/core/src/index.ts"],
+      "@pycom-next/worker-runtime": ["packages/worker-runtime/src/index.ts"],
+      "@pycom-next/dicom": ["packages/dicom/src/index.ts"],
+      "@pycom-next/renderer-cornerstone": ["packages/renderer-cornerstone/src/index.ts"],
+      "@pycom-next/design-system": ["packages/design-system/src/index.ts"],
+      "@pycom-next/pyodide-agents": ["packages/pyodide-agents/src/index.ts"],
+      "@pycom-next/host-integration": ["packages/host-integration/src/index.ts"],
+      "@pycom-next/react-viewer": ["packages/react-viewer/src/index.tsx"],
+      "@pycom-next/react-viewer/ctWindowLevel": ["packages/react-viewer/src/presentation/ctWindowLevel.ts"],
+      "@pycom-next/react-viewer/overlayPresentation": ["packages/react-viewer/src/presentation/overlayPresentation.ts"]
+    }
+  }
+}

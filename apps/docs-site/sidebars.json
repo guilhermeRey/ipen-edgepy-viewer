@@ -1,0 +1,25 @@
+{
+  "docs": [
+    {
+      "title": "Início",
+      "path": "docs/index.md"
+    },
+    {
+      "title": "Downloads",
+      "path": "docs/downloads.md"
+    },
+    {
+      "title": "How-to",
+      "items": [
+        {
+          "title": "Como integrar com um app Django",
+          "path": "docs/how-to/integrar-django.md"
+        },
+        {
+          "title": "Como usar o editor PyScript",
+          "path": "docs/how-to/usar-pyscript.md"
+        }
+      ]
+    }
+  ]
+}

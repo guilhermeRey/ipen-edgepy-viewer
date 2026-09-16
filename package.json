@@ -1,0 +1,64 @@
+{
+  "name": "ipen-edgepy-viewer",
+  "version": "0.2.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermeRey/ipen-edgepy-viewer.git"
+  },
+  "homepage": "https://github.com/guilhermeRey/ipen-edgepy-viewer#readme",
+  "bugs": {
+    "url": "https://github.com/guilhermeRey/ipen-edgepy-viewer/issues"
+  },
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/worker-runtime",
+    "packages/dicom",
+    "packages/renderer-cornerstone",
+    "packages/design-system",
+    "packages/pyodide-agents",
+    "packages/host-integration",
+    "packages/react-viewer",
+    "apps/viewer-demo",
+    "apps/docs-site"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @pycom/clinical-viewer-next-demo",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "build:hosted": "npm run build:hosted -w @pycom/clinical-viewer-next-demo",
+    "package:hosted": "npm run build:hosted",
+    "docs:setup": "npm run setup -w @pycom/clinical-viewer-next-docs",
+    "docs:dev": "npm run dev -w @pycom/clinical-viewer-next-docs",
+    "docs:build": "npm run docs:build -w @pycom/clinical-viewer-next-docs",
+    "docs:test": "npm run test -w @pycom/clinical-viewer-next-docs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "check:circular": "madge --circular --extensions ts,tsx --ts-config tsconfig.base.json packages apps",
+    "check:duplication": "jscpd packages apps",
+    "verify-all": "npm run lint && npm run check:circular && npm run check:duplication",
+    "metrics": "node scripts/software-metrics.mjs",
+    "metrics:check": "node scripts/software-metrics.mjs --check"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.3.0",
+    "vitest": "^4.1.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^10.4.1",
+    "eslint-plugin-sonarjs": "^4.0.3",
+    "jscpd": "^4.2.4",
+    "madge": "^8.0.0",
+    "typescript-eslint": "^8.60.1"
+  }
+}

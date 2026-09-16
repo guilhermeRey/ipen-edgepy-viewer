@@ -1,0 +1,1278 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: dark;
+  --pycom-color-background: #080C16;
+  --pycom-color-surface: #0B1120;
+  --pycom-color-surface-raised: #1B2436;
+  --pycom-color-border: rgba(255, 255, 255, 0.08);
+  --pycom-color-text: #E8EDF6;
+  --pycom-color-muted: #93A0B8;
+  --pycom-color-accent: #2BE3D2;
+  --pycom-color-gold: #FFD23F;
+  --pycom-color-blue: #4B8BBE;
+  --pycom-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --pycom-font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --pycom-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pycom-radius-small: 6px;
+  --pycom-radius-medium: 10px;
+  --pycom-radius-large: 16px;
+  font-family: var(--pycom-font-body);
+}
+
+.pycom-next-shell {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(43, 227, 210, 0.16), transparent 30%),
+    radial-gradient(circle at 86% 16%, rgba(255, 210, 63, 0.12), transparent 28%),
+    var(--pycom-color-background);
+  color: var(--pycom-color-text);
+}
+
+.pycom-next-viewer {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.pycom-next-viewer *,
+.pycom-next-viewer *::before,
+.pycom-next-viewer *::after {
+  box-sizing: inherit;
+}
+
+.pycom-next-viewport h2,
+.pycom-next-panel h2,
+.pycom-next-panel h3,
+.pycom-next-panel p,
+.pycom-next-viewport p,
+.pycom-next-metrics {
+  margin: 0;
+}
+
+.pycom-next-eyebrow {
+  color: var(--pycom-color-accent);
+  font-family: var(--pycom-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pycom-next-layout {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  position: relative;
+}
+
+.pycom-next-layout[data-panel-open="true"] {
+  grid-template-columns: 62px minmax(300px, 340px) minmax(0, 1fr);
+}
+
+.pycom-next-layout[data-panel-open="true"][data-panel-wide="true"] {
+  grid-template-columns: 62px minmax(440px, 520px) minmax(0, 1fr);
+}
+
+.pycom-next-activity-rail {
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.98), rgba(13, 20, 36, 0.96));
+  border-right: 1px solid rgba(43, 227, 210, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  grid-column: 1;
+  grid-row: 1;
+  min-height: 0;
+  padding: 14px 8px;
+  z-index: 6;
+}
+
+.pycom-next-rail-button {
+  align-items: center;
+  background: rgba(27, 36, 54, 0.48);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: var(--pycom-color-muted);
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 5px;
+  justify-items: center;
+  min-height: 74px;
+  padding: 8px 4px;
+  position: relative;
+  text-decoration: none;
+}
+
+.pycom-next-rail-button:hover,
+.pycom-next-rail-button:focus-visible,
+.pycom-next-rail-button[aria-pressed="true"] {
+  border-color: rgba(43, 227, 210, 0.44);
+  color: var(--pycom-color-text);
+  outline: 0;
+}
+
+.pycom-next-rail-button[aria-pressed="true"] {
+  background: linear-gradient(180deg, rgba(43, 227, 210, 0.18), rgba(27, 36, 54, 0.72));
+  box-shadow: inset 3px 0 0 var(--pycom-color-accent), 0 0 22px rgba(43, 227, 210, 0.12);
+}
+
+.pycom-next-rail-button svg {
+  fill: none;
+  height: 20px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 20px;
+}
+
+.pycom-next-rail-button span {
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.pycom-next-rail-button::after {
+  background: rgba(8, 12, 22, 0.96);
+  border: 1px solid rgba(43, 227, 210, 0.28);
+  border-radius: 999px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.42);
+  color: var(--pycom-color-text);
+  content: attr(data-label);
+  font-size: 0.72rem;
+  font-weight: 800;
+  left: calc(100% + 10px);
+  opacity: 0;
+  padding: 6px 10px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-4px, -50%);
+  transition: opacity 120ms ease, transform 120ms ease;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.pycom-next-rail-button:hover::after,
+.pycom-next-rail-button:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.pycom-next-rail-button strong {
+  background: rgba(255, 210, 63, 0.16);
+  border: 1px solid rgba(255, 210, 63, 0.32);
+  border-radius: 999px;
+  color: var(--pycom-color-gold);
+  font-family: var(--pycom-font-mono);
+  font-size: 0.66rem;
+  line-height: 1;
+  min-width: 20px;
+  padding: 4px 6px;
+}
+
+.pycom-next-rail-footer {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.pycom-next-side-panel {
+  background: linear-gradient(180deg, rgba(11, 17, 32, 0.98), rgba(8, 12, 22, 0.98));
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+  min-width: 0;
+  padding: 10px;
+  position: relative;
+}
+
+.pycom-next-side-panel > div,
+.pycom-next-side-panel .pycom-next-panel {
+  height: 100%;
+  min-height: 0;
+}
+
+.pycom-next-side-panel .pycom-next-panel {
+  border-color: rgba(43, 227, 210, 0.14);
+  border-radius: 14px;
+}
+
+.pycom-next-side-panel-close {
+  background: rgba(8, 12, 22, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--pycom-color-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 2;
+}
+
+.pycom-next-side-panel-close:hover,
+.pycom-next-side-panel-close:focus-visible {
+  border-color: rgba(43, 227, 210, 0.5);
+  color: var(--pycom-color-text);
+  outline: 0;
+}
+
+.pycom-next-panel,
+.pycom-next-viewport {
+  border: 1px solid var(--pycom-color-border);
+  border-radius: var(--pycom-radius-large);
+  background: linear-gradient(160deg, rgba(17, 25, 43, 0.96), rgba(11, 17, 32, 0.98));
+}
+
+.pycom-next-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow: auto;
+  padding: 12px;
+}
+
+.pycom-next-panel-header {
+  display: grid;
+  gap: 4px;
+}
+
+.pycom-next-panel h2,
+.pycom-next-panel h3 {
+  font-size: 1rem;
+}
+
+.pycom-next-viewport {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.pycom-next-layout[data-panel-open="true"] .pycom-next-viewport {
+  grid-column: 3;
+}
+
+.pycom-next-renderer-mount {
+  inset: 0;
+  min-height: 0;
+  min-width: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.pycom-next-viewport-toolbar {
+  align-items: center;
+  background: linear-gradient(90deg, rgba(8, 12, 22, 0.92), rgba(14, 20, 36, 0.84));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  padding: 8px 10px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 4;
+}
+
+.pycom-next-toolbar-brand {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+  min-width: 180px;
+}
+
+.pycom-next-toolbar-brand > svg {
+  fill: none;
+  filter: drop-shadow(0 0 8px rgba(43, 227, 210, 0.42));
+  height: 28px;
+  width: 28px;
+}
+
+.pycom-next-toolbar-title strong {
+  color: var(--pycom-color-text);
+  font-family: var(--pycom-font-display);
+  letter-spacing: -0.02em;
+}
+
+.pycom-next-toolbar-title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pycom-next-toolbar-title strong,
+.pycom-next-toolbar-title span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-toolbar-title span {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+}
+
+.pycom-next-toolbar-context {
+  display: grid;
+  flex: 1;
+  gap: 6px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.pycom-next-context-chip {
+  background: rgba(27, 36, 54, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  padding: 5px 8px;
+}
+
+.pycom-next-context-chip small,
+.pycom-next-context-chip strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-context-chip small {
+  color: var(--pycom-color-muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pycom-next-context-chip strong {
+  color: var(--pycom-color-text);
+  font-size: 0.78rem;
+}
+
+.pycom-next-toolbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.pycom-next-toolbar-extra {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  position: relative;
+}
+
+.pycom-next-clinical-tools {
+  align-items: center;
+  background: rgba(8, 12, 22, 0.54);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  gap: 5px;
+  padding: 4px;
+}
+
+.pycom-next-clinical-tools-wrap {
+  position: relative;
+}
+
+.pycom-next-tool-select {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.pycom-next-tool-select span {
+  color: var(--pycom-color-muted);
+  font-family: var(--pycom-font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.pycom-next-tool-select select,
+.pycom-next-tool-button,
+.pycom-next-slice-indicator {
+  background: rgba(27, 36, 54, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  color: var(--pycom-color-text);
+}
+
+.pycom-next-clinical-tools-expanded {
+  background: rgba(8, 12, 22, 0.96);
+  border: 1px solid rgba(43, 227, 210, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+  display: grid;
+  gap: 10px;
+  min-width: 280px;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 7;
+}
+
+.pycom-next-clinical-tools-expanded label {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+}
+
+.pycom-next-clinical-tools-expanded label:first-child {
+  grid-template-columns: 42px minmax(0, 1fr);
+}
+
+.pycom-next-clinical-tools-expanded span,
+.pycom-next-clinical-tools-expanded strong {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+}
+
+.pycom-next-clinical-tools-expanded input {
+  accent-color: var(--pycom-color-accent);
+  min-width: 0;
+  width: 100%;
+}
+
+.pycom-next-tool-select select {
+  font: inherit;
+  font-size: 0.72rem;
+  max-width: 112px;
+  padding: 5px 7px;
+}
+
+.pycom-next-tool-button {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  padding: 0;
+  width: 30px;
+}
+
+.pycom-next-tool-button[aria-pressed="true"] {
+  border-color: var(--pycom-color-accent);
+  box-shadow: 0 0 18px rgba(43, 227, 210, 0.18);
+  color: #E8EDF6;
+}
+
+.pycom-next-tool-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.pycom-next-tool-button svg {
+  fill: none;
+  height: 15px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+  width: 15px;
+}
+
+.pycom-next-slice-indicator {
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 48px;
+  padding: 6px 7px;
+  text-align: center;
+}
+
+.pycom-next-toolbar-button {
+  align-items: center;
+  background: rgba(27, 36, 54, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--pycom-color-text);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  gap: 6px;
+  padding: 8px 10px;
+}
+
+.pycom-next-toolbar-button[aria-pressed="true"] {
+  border-color: var(--pycom-color-accent);
+  box-shadow: inset 0 0 0 1px rgba(43, 227, 210, 0.18), 0 0 18px rgba(43, 227, 210, 0.16);
+  color: #E8EDF6;
+}
+
+.pycom-next-toolbar-button svg {
+  fill: none;
+  height: 16px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 16px;
+}
+
+.pycom-next-panel-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.pycom-next-floating-panel {
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  position: absolute;
+  top: 66px;
+  width: min(320px, calc(100% - 24px));
+  z-index: 3;
+}
+
+.pycom-next-study-drawer {
+  left: 12px;
+}
+
+.pycom-next-inspector-drawer {
+  right: 12px;
+  width: min(360px, calc(100% - 24px));
+}
+
+.pycom-next-metrics {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pycom-next-study-summary {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.pycom-next-metrics div,
+.pycom-next-study-summary div,
+.pycom-next-list li {
+  border: 1px solid var(--pycom-color-border);
+  border-radius: var(--pycom-radius-medium);
+  background: var(--pycom-color-surface-raised);
+}
+
+.pycom-next-metrics div,
+.pycom-next-study-summary div {
+  padding: 8px;
+}
+
+.pycom-next-metrics dt,
+.pycom-next-study-summary dt,
+.pycom-next-list span,
+.pycom-next-list small,
+.pycom-next-muted,
+.pycom-next-study-label {
+  color: var(--pycom-color-muted);
+  font-size: 0.78rem;
+}
+
+.pycom-next-metrics dd {
+  color: var(--pycom-color-gold);
+  font-family: var(--pycom-font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 4px 0 0;
+}
+
+.pycom-next-study-summary dd {
+  color: var(--pycom-color-gold);
+  font-family: var(--pycom-font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 2px 0 0;
+}
+
+.pycom-next-panel-section,
+.pycom-next-empty-study {
+  display: grid;
+  gap: 10px;
+}
+
+.pycom-next-panel-section h3,
+.pycom-next-empty-study p {
+  margin: 0;
+}
+
+.pycom-next-empty-study {
+  background: rgba(43, 227, 210, 0.08);
+  border: 1px solid rgba(43, 227, 210, 0.22);
+  border-radius: var(--pycom-radius-medium);
+  padding: 12px;
+}
+
+.pycom-next-empty-study > span {
+  color: var(--pycom-color-text);
+  font-weight: 800;
+}
+
+.pycom-next-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pycom-next-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.pycom-next-scan-button,
+.pycom-next-series-button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  gap: 4px;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.pycom-next-scan-button {
+  gap: 10px;
+  padding: 12px;
+}
+
+.pycom-next-scan-button-header,
+.pycom-next-scan-modalities,
+.pycom-next-scan-overlays {
+  display: grid;
+  gap: 6px;
+}
+
+.pycom-next-scan-button-header {
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.pycom-next-list .pycom-next-scan-active-pill {
+  background: rgba(43, 227, 210, 0.14);
+  border: 1px solid rgba(43, 227, 210, 0.34);
+  border-radius: 999px;
+  color: var(--pycom-color-accent);
+  font-family: var(--pycom-font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  text-transform: uppercase;
+}
+
+.pycom-next-scan-modalities {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pycom-next-scan-modality {
+  background: rgba(8, 12, 22, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--pycom-radius-small);
+  min-width: 0;
+  padding: 7px;
+}
+
+.pycom-next-scan-modality strong,
+.pycom-next-scan-overlays span:last-child {
+  color: var(--pycom-color-text);
+  font-size: 0.76rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-scan-overlays {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
+}
+
+.pycom-next-scan-button:hover,
+.pycom-next-scan-button:focus-visible,
+.pycom-next-series-button:hover,
+.pycom-next-series-button:focus-visible {
+  outline: 0;
+}
+
+.pycom-next-section-heading,
+.pycom-next-overlay-group-title {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.pycom-next-section-heading > span,
+.pycom-next-overlay-group-title {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.pycom-next-overlay-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pycom-next-overlay-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pycom-next-overlay-group-title {
+  border-bottom: 1px solid var(--pycom-color-border);
+  color: var(--pycom-color-gold);
+  font-family: var(--pycom-font-mono);
+  letter-spacing: 0.08em;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.pycom-next-fusion-layer,
+.pycom-next-overlay-list li,
+.pycom-next-rtstruct-list li {
+  border: 1px solid var(--pycom-color-border);
+  border-radius: var(--pycom-radius-medium);
+  background: var(--pycom-color-surface-raised);
+}
+
+.pycom-next-fusion-layer,
+.pycom-next-overlay-list li,
+.pycom-next-rtstruct-list li {
+  padding: 0;
+}
+
+.pycom-next-fusion-layer[data-visible="true"],
+.pycom-next-overlay-list li[data-visible="true"],
+.pycom-next-rtstruct-list li[data-visible="true"] {
+  border-color: rgba(43, 227, 210, 0.62);
+}
+
+.pycom-next-fusion-layer[data-visible="false"],
+.pycom-next-overlay-list li[data-visible="false"],
+.pycom-next-rtstruct-list li[data-visible="false"] {
+  opacity: 0.58;
+}
+
+.pycom-next-overlay-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.pycom-next-overlay-button:hover,
+.pycom-next-overlay-button:focus-visible {
+  outline: 0;
+}
+
+.pycom-next-overlay-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 4px;
+  height: 14px;
+  width: 14px;
+}
+
+.pycom-next-functional-swatch {
+  background: linear-gradient(135deg, #2BE3D2 0%, #4B8BBE 35%, #E08A12 68%, #FFD23F 100%);
+}
+
+.pycom-next-overlay-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pycom-next-overlay-text strong,
+.pycom-next-overlay-text small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-overlay-state {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pycom-next-overlay-state strong {
+  border: 1px solid rgba(43, 227, 210, 0.35);
+  border-radius: 999px;
+  color: var(--pycom-color-text);
+  font-size: 0.72rem;
+  padding: 4px 8px;
+}
+
+.pycom-next-status-line {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.pycom-next-loading-spinner {
+  animation: pycom-next-spin 0.9s linear infinite;
+  border: 2px solid rgba(147, 160, 184, 0.38);
+  border-radius: 999px;
+  border-top-color: var(--pycom-color-accent);
+  flex: 0 0 auto;
+  height: 12px;
+  width: 12px;
+}
+
+@keyframes pycom-next-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pycom-next-loading-spinner {
+    animation: none;
+  }
+}
+
+.pycom-next-rtstruct-roi-panel {
+  border-top: 1px solid var(--pycom-color-border);
+  padding: 10px 12px 12px;
+}
+
+.pycom-next-rtstruct-roi-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.pycom-next-rtstruct-roi-actions button {
+  background: rgba(27, 36, 54, 0.74);
+  border: 1px solid var(--pycom-color-border);
+  border-radius: 999px;
+  color: var(--pycom-color-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 3px 9px;
+}
+
+.pycom-next-rtstruct-roi-actions button:hover,
+.pycom-next-rtstruct-roi-actions button:focus-visible {
+  border-color: rgba(43, 227, 210, 0.62);
+  color: var(--pycom-color-text);
+  outline: 0;
+}
+
+.pycom-next-rtstruct-roi-list {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pycom-next-rtstruct-roi-list li {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+.pycom-next-rtstruct-roi-list label {
+  align-items: center;
+  color: var(--pycom-color-muted);
+  cursor: pointer;
+  display: grid;
+  font-size: 0.76rem;
+  gap: 8px;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  min-width: 0;
+}
+
+.pycom-next-rtstruct-roi-list input {
+  accent-color: var(--pycom-color-accent);
+}
+
+.pycom-next-rtstruct-roi-list span:not(.pycom-next-rtstruct-roi-swatch) {
+  color: var(--pycom-color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-rtstruct-roi-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 999px;
+  height: 10px;
+  width: 10px;
+}
+
+.pycom-next-rtstruct-roi-list small {
+  white-space: nowrap;
+}
+
+.pycom-next-rtstruct-roi-list li > button {
+  background: transparent;
+  border: 1px solid rgba(43, 227, 210, 0.28);
+  border-radius: 999px;
+  color: var(--pycom-color-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+}
+
+.pycom-next-rtstruct-roi-list li > button:hover,
+.pycom-next-rtstruct-roi-list li > button:focus-visible {
+  border-color: rgba(43, 227, 210, 0.72);
+  color: var(--pycom-color-text);
+  outline: 0;
+}
+
+.pycom-next-window-level {
+  border-top: 1px solid var(--pycom-color-border);
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.pycom-next-window-level header,
+.pycom-next-window-level label {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+}
+
+.pycom-next-window-level header {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.pycom-next-window-level label {
+  grid-template-columns: 58px minmax(0, 1fr) auto;
+}
+
+.pycom-next-window-level label:first-of-type {
+  grid-template-columns: 58px minmax(0, 1fr);
+}
+
+.pycom-next-window-level h3 {
+  margin: 0;
+}
+
+.pycom-next-window-level span,
+.pycom-next-window-level strong {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+}
+
+.pycom-next-window-level button,
+.pycom-next-window-level select {
+  background: rgba(15, 23, 42, 0.74);
+  border: 1px solid var(--pycom-color-border);
+  border-radius: 999px;
+  color: var(--pycom-color-text);
+  font: inherit;
+  font-size: 0.72rem;
+}
+
+.pycom-next-window-level button {
+  cursor: pointer;
+  padding: 3px 9px;
+}
+
+.pycom-next-window-level select {
+  min-width: 0;
+  padding: 4px 8px;
+}
+
+.pycom-next-window-level input {
+  accent-color: var(--pycom-color-accent);
+  min-width: 0;
+  width: 100%;
+}
+
+.pycom-next-opacity-control {
+  align-items: center;
+  border-top: 1px solid var(--pycom-color-border);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  padding: 0 12px 12px;
+}
+
+.pycom-next-opacity-control span,
+.pycom-next-opacity-control strong {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+}
+
+.pycom-next-opacity-control input {
+  accent-color: var(--pycom-color-accent);
+  min-width: 0;
+  width: 100%;
+}
+
+.pycom-next-colormap-control {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) 72px;
+  padding: 0 12px 12px;
+}
+
+.pycom-next-colormap-control span,
+.pycom-next-colormap-control select {
+  color: var(--pycom-color-muted);
+  font-size: 0.72rem;
+}
+
+.pycom-next-colormap-control select {
+  background: var(--pycom-color-background);
+  border: 1px solid var(--pycom-color-border);
+  border-radius: var(--pycom-radius-small);
+  min-width: 0;
+  padding: 4px 6px;
+}
+
+.pycom-next-colormap-ramp {
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  height: 10px;
+}
+
+.pycom-next-colormap-ramp-heat {
+  background: linear-gradient(90deg, #1d4ed8, #ef4444, #facc15);
+}
+
+.pycom-next-colormap-ramp-viridis {
+  background: linear-gradient(90deg, #440154, #3b528b, #21918c, #5ec962, #fde725);
+}
+
+.pycom-next-colormap-ramp-grayscale {
+  background: linear-gradient(90deg, #000, #fff);
+}
+
+.pycom-next-rtstruct-node {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px;
+}
+
+.pycom-next-rtstruct-node strong {
+  color: var(--pycom-color-text);
+}
+
+.pycom-next-rtstruct-node small {
+  color: var(--pycom-color-muted);
+  font-size: 0.78rem;
+}
+
+.pycom-next-list li.is-active,
+.pycom-next-list li:focus-within {
+  border-color: var(--pycom-color-accent);
+}
+
+.pycom-next-series-summary-card {
+  display: grid;
+  gap: 4px;
+  padding: 2px;
+}
+
+.pycom-next-series-summary-card span {
+  color: var(--pycom-color-accent);
+  font-family: var(--pycom-font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pycom-next-series-summary-card strong,
+.pycom-next-series-summary-card small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pycom-next-series-summary-card small {
+  color: var(--pycom-color-muted);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 980px) {
+  .pycom-next-layout[data-panel-open="true"] {
+    grid-template-columns: 58px minmax(280px, 310px) minmax(0, 1fr);
+  }
+
+  .pycom-next-toolbar-context {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pycom-next-floating-panel {
+    width: min(300px, calc(100% - 24px));
+  }
+}
+
+@media (max-width: 760px) {
+  .pycom-next-layout,
+  .pycom-next-layout[data-panel-open="true"] {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .pycom-next-activity-rail {
+    padding: 10px 6px;
+  }
+
+  .pycom-next-rail-button {
+    border-radius: 12px;
+    min-height: 66px;
+  }
+
+  .pycom-next-side-panel {
+    border-left: 1px solid rgba(43, 227, 210, 0.14);
+    border-right: 0;
+    bottom: 8px;
+    box-shadow: 18px 0 70px rgba(0, 0, 0, 0.52);
+    grid-column: 2;
+    grid-row: 1;
+    left: auto;
+    padding: 8px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: calc(100vw - 72px);
+    z-index: 8;
+  }
+
+  .pycom-next-viewport-toolbar {
+    left: 68px;
+    max-width: calc(100% - 80px);
+  }
+
+  .pycom-next-viewport,
+  .pycom-next-layout[data-panel-open="true"] .pycom-next-viewport {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .pycom-next-toolbar-button span {
+    display: none;
+  }
+
+  .pycom-next-toolbar-context {
+    display: none;
+  }
+
+  .pycom-next-toolbar-brand {
+    min-width: 0;
+  }
+
+  .pycom-next-floating-panel {
+    left: 8px;
+    right: 8px;
+    top: 62px;
+    width: auto;
+  }
+
+  .pycom-next-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .pycom-next-study-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 761px) {
+  .pycom-next-layout[data-panel-open="true"][data-panel-presentation="bottom"] {
+    grid-template-columns: 62px minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(360px, 52vh);
+  }
+
+  .pycom-next-layout[data-panel-presentation="bottom"] .pycom-next-activity-rail {
+    grid-row: 1 / -1;
+  }
+
+  .pycom-next-layout[data-panel-presentation="bottom"] .pycom-next-side-panel {
+    border-right: 0;
+    border-top: 1px solid rgba(43, 227, 210, 0.2);
+    grid-column: 2;
+    grid-row: 2;
+    z-index: 7;
+  }
+
+  .pycom-next-layout[data-panel-presentation="bottom"] .pycom-next-viewport,
+  .pycom-next-layout[data-panel-presentation="fullscreen"] .pycom-next-viewport {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .pycom-next-layout[data-panel-open="true"][data-panel-presentation="fullscreen"] {
+    grid-template-columns: 62px minmax(0, 1fr);
+  }
+
+  .pycom-next-layout[data-panel-presentation="fullscreen"] .pycom-next-side-panel {
+    border-right: 0;
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 8;
+  }
+}
+
+@media (max-width: 760px) {
+  .pycom-next-layout[data-panel-presentation="bottom"] .pycom-next-side-panel {
+    height: min(52vh, 480px);
+    top: auto;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "agents": [
+    {
+      "name": "study-context-validator",
+      "version": "0.1.0",
+      "module": "study_context_validator",
+      "displayName": "Study Context Validator",
+      "description": "Example local Python agent that validates basic EdgePy Viewer context fields.",
+      "capabilities": ["viewer-context", "validation"],
+      "entrypoint": "process",
+      "requiresHumanValidation": false
+    }
+  ]
+}

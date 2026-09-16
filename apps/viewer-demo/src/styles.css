@@ -1,0 +1,1025 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --edgepy-night: #080C16;
+  --edgepy-panel: #0B1120;
+  --edgepy-graphite: #1B2436;
+  --edgepy-text: #E8EDF6;
+  --edgepy-muted: #93A0B8;
+  --edgepy-cyan: #2BE3D2;
+  --edgepy-gold: #FFD23F;
+  --edgepy-blue: #4B8BBE;
+  --edgepy-border: rgba(255, 255, 255, 0.08);
+  --edgepy-cyan-border: rgba(43, 227, 210, 0.28);
+  --edgepy-gold-border: rgba(255, 210, 63, 0.28);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body,
+#root,
+[data-pycom-clinical-viewer] {
+  height: 100%;
+  margin: 0;
+}
+
+#root,
+[data-pycom-clinical-viewer] {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 4%, rgba(18, 181, 201, 0.26), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(255, 210, 63, 0.16), transparent 32%),
+    var(--edgepy-night);
+  color: var(--edgepy-text);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.demo-import-bar {
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(8, 12, 22, 0.78);
+  border-bottom: 1px solid var(--edgepy-border);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
+  color: var(--edgepy-text);
+  display: grid;
+  gap: 10px 16px;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  left: 0;
+  padding: 10px 16px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 12;
+}
+
+.demo-import-bar-status {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.demo-import-bar-status span {
+  color: var(--edgepy-muted);
+  font-size: 0.84rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-import-bar-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.demo-import-bar-actions button {
+  align-items: center;
+  border: 1px solid var(--edgepy-border);
+  border-radius: 999px;
+  color: var(--edgepy-text);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-weight: 700;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.demo-import-bar-actions button {
+  background: rgba(27, 36, 54, 0.84);
+  border-color: var(--edgepy-cyan-border);
+}
+
+.demo-import-debug {
+  background: rgba(8, 12, 22, 0.72);
+  border: 1px solid rgba(43, 227, 210, 0.18);
+  border-radius: 12px;
+  grid-column: 1 / -1;
+  padding: 8px 10px;
+}
+
+.demo-import-progress {
+  align-items: center;
+  background: rgba(8, 12, 22, 0.9);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 999px;
+  bottom: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.38);
+  color: var(--edgepy-text);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  left: 50%;
+  max-width: min(720px, calc(100vw - 32px));
+  padding: 9px 11px;
+  position: fixed;
+  transform: translateX(-50%);
+  width: max-content;
+  z-index: 10;
+}
+
+.demo-import-progress span:not(.demo-import-progress-indicator) {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.demo-import-progress small {
+  color: var(--edgepy-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  max-width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-import-progress button {
+  background: rgba(27, 36, 54, 0.9);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 999px;
+  color: var(--edgepy-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 10px;
+}
+
+.demo-import-progress-indicator {
+  background: var(--edgepy-gold);
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px rgba(255, 210, 63, 0.14);
+  height: 10px;
+  width: 10px;
+}
+
+.demo-import-progress[data-importing="true"] .demo-import-progress-indicator {
+  animation: demo-import-progress-pulse 1s ease-in-out infinite;
+  background: var(--edgepy-cyan);
+  box-shadow: 0 0 0 4px rgba(43, 227, 210, 0.16);
+}
+
+@keyframes demo-import-progress-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.demo-import-debug summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 8px;
+}
+
+.demo-import-debug summary span,
+.demo-import-debug time {
+  color: var(--edgepy-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.demo-import-debug-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.demo-import-debug ol {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  max-height: 220px;
+  overflow: auto;
+  padding: 0;
+}
+
+.demo-import-debug li {
+  border-top: 1px solid rgba(43, 227, 210, 0.12);
+  display: grid;
+  gap: 5px;
+  padding-top: 8px;
+}
+
+.demo-import-debug header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.demo-import-debug pre {
+  background: rgba(8, 12, 22, 0.68);
+  border-radius: 8px;
+  color: #C5CEDC;
+  font-size: 0.72rem;
+  margin: 0;
+  overflow: auto;
+  padding: 8px;
+}
+
+.demo-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+
+.demo-import-panel {
+  color: var(--edgepy-text);
+  position: relative;
+}
+
+.demo-import-panel-toggle {
+  align-items: center;
+  background: rgba(43, 227, 210, 0.12);
+  border: 1px solid rgba(43, 227, 210, 0.34);
+  border-radius: 10px;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  gap: 7px;
+  height: 40px;
+  padding: 8px 10px;
+}
+
+.demo-import-panel svg,
+.demo-action-card svg {
+  fill: none;
+  height: 16px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 16px;
+}
+
+.demo-import-panel-body {
+  background: rgba(8, 12, 22, 0.96);
+  border: 1px solid rgba(43, 227, 210, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: min(500px, calc(100vw - 24px));
+  z-index: 8;
+}
+
+.demo-import-panel-body p {
+  color: var(--edgepy-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.demo-import-panel-section {
+  display: grid;
+  gap: 8px;
+}
+
+.demo-import-panel-section + .demo-import-panel-section {
+  border-top: 1px solid rgba(43, 227, 210, 0.12);
+  padding-top: 12px;
+}
+
+.demo-import-panel-section h3 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.demo-import-panel-copy {
+  line-height: 1.35;
+}
+
+.demo-import-section {
+  border-top: 1px solid rgba(43, 227, 210, 0.12);
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.demo-import-section h3,
+.demo-import-section small {
+  margin: 0;
+}
+
+.demo-import-section h3 {
+  font-size: 0.86rem;
+}
+
+.demo-import-section small,
+.demo-import-targets legend {
+  color: var(--edgepy-muted);
+  font-size: 0.76rem;
+}
+
+.demo-panel-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.demo-action-card {
+  align-items: center;
+  background: linear-gradient(135deg, rgba(43, 227, 210, 0.12), rgba(27, 36, 54, 0.88));
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 12px;
+  color: var(--edgepy-text);
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+
+.demo-action-card span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.demo-action-card strong,
+.demo-action-card small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-action-card small {
+  color: var(--edgepy-muted);
+  font-size: 0.72rem;
+}
+
+.demo-import-panel-actions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.demo-import-panel-action {
+  align-items: center;
+  background: linear-gradient(135deg, rgba(43, 227, 210, 0.14), rgba(27, 36, 54, 0.92)) !important;
+  border-color: rgba(43, 227, 210, 0.32) !important;
+  border-radius: 12px !important;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  justify-items: start;
+  overflow: hidden;
+  padding: 11px 12px !important;
+  position: relative;
+  text-align: left;
+}
+
+.demo-import-panel-action[data-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.demo-import-panel-action span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.demo-import-panel-action small {
+  color: var(--edgepy-muted);
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.demo-import-panel-compact-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demo-import-panel input {
+  max-width: 160px;
+}
+
+.demo-import-panel-file-input {
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.demo-action-card input {
+  cursor: pointer;
+  height: 100%;
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.demo-action-card input:disabled {
+  cursor: not-allowed;
+}
+
+.demo-import-panel-file-input {
+  cursor: pointer;
+  height: 100%;
+  inset: 0;
+  max-width: none !important;
+  width: 100%;
+}
+
+.demo-import-panel-actions button {
+  background: rgba(27, 36, 54, 0.9);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 999px;
+  color: var(--edgepy-text);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 12px;
+}
+
+.demo-import-panel-section > button {
+  background: rgba(255, 210, 63, 0.16);
+  border: 1px solid var(--edgepy-gold-border);
+  border-radius: 999px;
+  color: var(--edgepy-text);
+  cursor: pointer;
+  font-weight: 700;
+  justify-self: start;
+  padding: 8px 12px;
+}
+
+.demo-import-targets {
+  border: 1px solid var(--edgepy-border);
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 10px 10px;
+}
+
+.demo-import-targets label {
+  padding: 5px 9px;
+}
+
+.demo-import-targets small {
+  align-self: center;
+}
+
+.demo-import-panel button:disabled,
+.demo-import-panel input:disabled,
+.demo-import-bar button:disabled,
+.demo-import-bar input:disabled,
+.demo-import-targets:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.demo-python-agents {
+  align-content: start;
+  display: grid;
+  gap: 12px;
+  overflow: auto;
+  padding: 16px 14px;
+}
+
+.demo-python-agent-heading {
+  display: grid;
+  gap: 4px;
+  padding-right: 58px;
+}
+
+.demo-python-agent-heading > span {
+  color: var(--edgepy-cyan);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demo-python-agent-layout-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.demo-python-agent-layout-actions button {
+  align-items: center;
+  background: rgba(27, 36, 54, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--edgepy-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  gap: 5px;
+  padding: 6px 8px;
+}
+
+.demo-python-agent-layout-actions button:hover,
+.demo-python-agent-layout-actions button:focus-visible,
+.demo-python-agent-layout-actions button[aria-pressed="true"] {
+  border-color: var(--edgepy-cyan-border);
+  color: var(--edgepy-cyan);
+  outline: 0;
+}
+
+.demo-python-agent-layout-actions svg {
+  fill: none;
+  height: 14px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 14px;
+}
+
+.demo-python-agents h3,
+.demo-python-agents p {
+  margin: 0;
+}
+
+.demo-python-agents p {
+  color: var(--edgepy-muted);
+  font-size: 0.78rem;
+}
+
+.demo-python-agent-status {
+  background: rgba(27, 36, 54, 0.56);
+  border-left: 3px solid var(--edgepy-cyan);
+  border-radius: 6px;
+  line-height: 1.4;
+  padding: 7px 9px;
+}
+
+.demo-python-agent-status[data-phase="failed"] {
+  border-left-color: #ff7b7b;
+}
+
+.demo-pyscript-tabs {
+  background: rgba(8, 12, 22, 0.54);
+  border: 1px solid rgba(43, 227, 210, 0.14);
+  border-radius: 10px;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 4px;
+}
+
+.demo-pyscript-tabs button,
+.demo-pyscript-editor-actions button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--edgepy-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 7px 9px;
+}
+
+.demo-pyscript-tabs button[aria-pressed="true"] {
+  background: rgba(43, 227, 210, 0.12);
+  border-color: var(--edgepy-cyan-border);
+  color: var(--edgepy-cyan);
+}
+
+.demo-pyscript-tabs button:disabled,
+.demo-pyscript-editor-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.demo-pyscript-editor-workspace,
+.demo-pyscript-agents-workspace {
+  display: grid;
+  gap: 10px;
+}
+
+.demo-pyscript-editor-workspace > p {
+  line-height: 1.4;
+}
+
+.demo-pyscript-editor-meta {
+  align-items: end;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.demo-pyscript-editor-meta label {
+  display: grid;
+  gap: 4px;
+}
+
+.demo-pyscript-editor-meta label > span {
+  color: var(--edgepy-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-pyscript-editor-meta select {
+  background: rgba(27, 36, 54, 0.84);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 9px;
+  color: var(--edgepy-text);
+  font: inherit;
+  font-size: 0.78rem;
+  min-height: 36px;
+  padding: 7px 9px;
+}
+
+.demo-pyscript-editor-meta small {
+  color: var(--edgepy-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  padding-bottom: 8px;
+  text-align: right;
+}
+
+.demo-pyscript-code-editor {
+  background: #282c34;
+  border: 1px solid rgba(43, 227, 210, 0.2);
+  border-radius: 10px;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.demo-pyscript-code-editor .cm-editor {
+  font-size: 0.74rem;
+  height: 300px;
+}
+
+.pycom-next-layout[data-panel-presentation="bottom"] .demo-pyscript-code-editor,
+.pycom-next-layout[data-panel-presentation="bottom"] .demo-pyscript-code-editor .cm-editor {
+  height: min(30vh, 300px);
+  min-height: 210px;
+}
+
+.pycom-next-layout[data-panel-presentation="fullscreen"] .demo-pyscript-code-editor,
+.pycom-next-layout[data-panel-presentation="fullscreen"] .demo-pyscript-code-editor .cm-editor {
+  height: min(58vh, 680px);
+  min-height: 420px;
+}
+
+.demo-pyscript-code-editor .cm-scroller {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  line-height: 1.5;
+}
+
+.demo-pyscript-dose-toggle {
+  align-items: center;
+  color: var(--edgepy-muted);
+  display: flex;
+  font-size: 0.72rem;
+  gap: 7px;
+}
+
+.demo-pyscript-dose-toggle input {
+  accent-color: var(--edgepy-cyan);
+}
+
+.demo-pyscript-editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.demo-pyscript-editor-actions button {
+  background: rgba(27, 36, 54, 0.84);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.demo-pyscript-editor-actions button:first-child {
+  background: rgba(43, 227, 210, 0.14);
+  border-color: var(--edgepy-cyan-border);
+  color: var(--edgepy-cyan);
+}
+
+.demo-python-agent-actions {
+  align-items: end;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.demo-python-agent-actions label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.demo-python-agent-actions label > span {
+  color: var(--edgepy-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-python-agent-actions button,
+.demo-python-agent-actions select {
+  background: rgba(27, 36, 54, 0.84);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 10px;
+  color: var(--edgepy-text);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  min-height: 36px;
+  padding: 8px 10px;
+}
+
+.demo-python-agent-actions button {
+  cursor: pointer;
+  justify-self: start;
+  width: auto;
+}
+
+.demo-python-agent-actions select {
+  min-width: 0;
+  width: 100%;
+}
+
+.demo-python-agent-load {
+  grid-column: 1 / -1;
+}
+
+.demo-python-agent-run {
+  white-space: nowrap;
+}
+
+.demo-python-agent-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.demo-python-agent-error {
+  color: #ff9a9a !important;
+}
+
+.demo-python-agent-details,
+.demo-python-agent-result {
+  align-content: start;
+  background: rgba(8, 12, 22, 0.52);
+  border: 1px solid rgba(43, 227, 210, 0.14);
+  border-radius: 10px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.demo-python-agent-details header {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.demo-python-agent-details header small {
+  color: var(--edgepy-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+}
+
+.demo-python-agent-details ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.demo-python-agent-details li {
+  background: rgba(43, 227, 210, 0.1);
+  border: 1px solid var(--edgepy-cyan-border);
+  border-radius: 999px;
+  color: var(--edgepy-cyan);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.64rem;
+  line-height: 1;
+  margin: 0;
+  padding: 4px 7px;
+}
+
+.demo-python-agent-warning {
+  background: rgba(255, 210, 63, 0.1);
+  border-left: 3px solid var(--edgepy-gold);
+  color: var(--edgepy-gold) !important;
+  padding: 7px 8px;
+}
+
+.demo-python-agent-result h4 {
+  margin: 0;
+}
+
+.demo-python-agent-result dl {
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(7rem, 0.8fr) minmax(0, 1.2fr);
+  margin: 0;
+}
+
+.demo-python-agent-result dt,
+.demo-python-agent-result dd {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0;
+  overflow-wrap: anywhere;
+  padding: 7px 4px;
+}
+
+.demo-python-agent-result dt {
+  color: var(--edgepy-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.demo-python-agent-result dd {
+  color: var(--edgepy-text);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+}
+
+.demo-python-agent-result details,
+.demo-python-agent-result summary {
+  margin: 0;
+}
+
+.demo-python-agent-result summary {
+  color: var(--edgepy-muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.demo-python-agent-result-warnings {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.demo-python-agent-result-warnings li {
+  background: rgba(255, 210, 63, 0.1);
+  border-left: 3px solid var(--edgepy-gold);
+  color: var(--edgepy-gold);
+  font-size: 0.7rem;
+  line-height: 1.35;
+  margin: 0;
+  padding: 6px 8px;
+}
+
+.demo-python-agents pre {
+  background: rgba(8, 12, 22, 0.74);
+  border: 1px solid rgba(43, 227, 210, 0.14);
+  border-radius: 10px;
+  color: #C5CEDC;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  margin: 0;
+  max-height: 220px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.pycom-cornerstone-stack {
+  background: var(--edgepy-night);
+  border: 1px solid rgba(43, 227, 210, 0.24);
+  border-radius: 16px;
+  display: grid;
+  height: 100%;
+  inset: 0;
+  min-height: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.pycom-cornerstone-stack-viewport {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.pycom-cornerstone-stack-status {
+  background: rgba(8, 12, 22, 0.76);
+  border: 1px solid rgba(43, 227, 210, 0.18);
+  border-radius: 999px;
+  bottom: 12px;
+  color: var(--edgepy-text);
+  font-size: 0.85rem;
+  left: 12px;
+  margin: 0;
+  padding: 8px 12px;
+  position: absolute;
+}
+
+.pycom-cornerstone-placeholder {
+  align-items: center;
+  background: radial-gradient(circle at center top, rgba(43, 227, 210, 0.2), rgba(8, 12, 22, 0.96) 58%);
+  border: 1px solid rgba(43, 227, 210, 0.26);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100%;
+  padding: 32px;
+  text-align: center;
+}
+
+.pycom-cornerstone-placeholder h2,
+.pycom-cornerstone-placeholder p {
+  margin: 0;
+}
+
+.pycom-cornerstone-placeholder-overlays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pycom-cornerstone-placeholder-overlays li {
+  background: var(--edgepy-graphite);
+  border: 1px solid var(--edgepy-border);
+  border-radius: 999px;
+  color: var(--edgepy-text);
+  padding: 8px 12px;
+}
+
+@media (max-width: 760px) {
+  .demo-import-bar {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    padding: 10px 12px;
+  }
+
+  .demo-import-bar-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .demo-import-bar-actions button {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .demo-import-progress {
+    border-radius: 16px;
+    grid-template-columns: auto minmax(0, 1fr);
+    width: calc(100vw - 32px);
+  }
+
+  .demo-import-progress button {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+
+  .demo-import-panel-actions {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .demo-import-panel-actions button {
+    justify-content: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "include": ["packages", "apps"],
+  "exclude": ["dist", "node_modules", ".vite", "coverage"],
+  "excludeFiles": [".test.ts", ".test.tsx", ".d.ts"],
+  "thresholds": {
+    "maxCyclomaticComplexity": 12,
+    "maxFunctionLines": 140,
+    "maxFileLines": 260
+  },
+  "comparisonBands": {
+    "cyclomaticComplexity": [
+      { "label": "A low risk", "max": 5 },
+      { "label": "B low risk", "max": 10 },
+      { "label": "C moderate risk", "max": 20 },
+      { "label": "D high risk", "max": 30 },
+      { "label": "E very high risk", "max": 40 },
+      { "label": "F unstable", "max": null }
+    ],
+    "functionLines": [
+      { "label": "A compact", "max": 50 },
+      { "label": "B acceptable", "max": 100 },
+      { "label": "C guarded", "max": 140 },
+      { "label": "D refactor soon", "max": 200 },
+      { "label": "E excessive", "max": null }
+    ],
+    "fileLines": [
+      { "label": "A compact", "max": 120 },
+      { "label": "B acceptable", "max": 200 },
+      { "label": "C guarded", "max": 260 },
+      { "label": "D split soon", "max": 400 },
+      { "label": "E excessive", "max": null }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@pycom-next/dicom",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.6"
+  },
+  "dependencies": {
+    "@pycom-next/core": "0.2.0",
+    "@pycom-next/worker-runtime": "0.2.0",
+    "dicom-parser": "^1.8.21"
+  }
+}

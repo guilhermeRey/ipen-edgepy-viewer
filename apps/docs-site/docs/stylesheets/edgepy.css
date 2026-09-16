@@ -1,0 +1,400 @@
+:root {
+  --edgepy-night-ink: #080c16;
+  --edgepy-graphite: #1b2436;
+  --edgepy-cyan: #2be3d2;
+  --edgepy-cyan-ink: #087c74;
+  --edgepy-gold: #ffd23f;
+  --edgepy-blue: #4b8bbe;
+  --edgepy-text-soft: #c5cedc;
+  --md-primary-fg-color: var(--edgepy-night-ink);
+  --md-primary-fg-color--light: var(--edgepy-graphite);
+  --md-primary-fg-color--dark: #05070d;
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f8fafc;
+  --md-default-fg-color: #152033;
+  --md-default-fg-color--light: #40506a;
+  --md-accent-fg-color: var(--edgepy-cyan-ink);
+  --md-typeset-a-color: var(--edgepy-cyan-ink);
+  --edgepy-page-heading: var(--edgepy-night-ink);
+  --edgepy-panel-border: rgba(8, 124, 116, 0.26);
+  --edgepy-tip-bg: rgba(43, 227, 210, 0.12);
+  --edgepy-info-bg: rgba(75, 139, 190, 0.14);
+  --edgepy-success-bg: rgba(255, 210, 63, 0.2);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--edgepy-night-ink);
+  --md-default-fg-color: #f8fafc;
+  --md-default-fg-color--light: #b6c7d8;
+  --md-accent-fg-color: var(--edgepy-cyan);
+  --md-typeset-a-color: var(--edgepy-cyan);
+  --edgepy-page-heading: var(--edgepy-cyan);
+  --edgepy-panel-border: rgba(43, 227, 210, 0.35);
+  --edgepy-tip-bg: rgba(43, 227, 210, 0.12);
+  --edgepy-info-bg: rgba(75, 139, 190, 0.14);
+  --edgepy-success-bg: rgba(255, 210, 63, 0.16);
+}
+
+.md-header,
+.md-tabs {
+  background:
+    radial-gradient(
+      circle at 6% 0%,
+      rgba(43, 227, 210, 0.28),
+      transparent 18rem
+    ),
+    linear-gradient(135deg, var(--edgepy-night-ink), var(--edgepy-graphite));
+}
+
+.md-header__title,
+.md-tabs__link,
+.md-nav__title {
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.md-header__title {
+  font-weight: 800;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h1 {
+  color: var(--edgepy-page-heading);
+}
+
+.md-typeset code,
+.md-typeset pre {
+  font-family:
+    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.md-typeset .edgepy-hero-card {
+  margin: 1.4rem 0;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--edgepy-panel-border);
+  border-radius: 1rem;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(43, 227, 210, 0.18),
+      transparent 32rem
+    ),
+    linear-gradient(135deg, rgba(8, 12, 22, 0.98), rgba(27, 36, 54, 0.92));
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.24);
+  color: #f8fafc;
+}
+
+.md-typeset .edgepy-hero-card strong {
+  color: var(--edgepy-gold);
+}
+
+.md-typeset .edgepy-brand-lockup {
+  box-shadow: none;
+  display: block;
+  margin: 0 0 1rem;
+  max-width: min(24rem, 100%);
+}
+
+.md-typeset .edgepy-author-strip {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 1fr;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.md-typeset .edgepy-author-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.md-typeset .edgepy-author-card,
+.md-typeset .edgepy-institution-card {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(43, 227, 210, 0.12),
+      transparent 14rem
+    ),
+    linear-gradient(135deg, rgba(8, 12, 22, 0.96), rgba(27, 36, 54, 0.92));
+  border: 1px solid var(--edgepy-panel-border);
+  border-radius: 0.95rem;
+  color: #f8fafc;
+  display: flex;
+  gap: 0.75rem;
+  min-height: 5rem;
+  padding: 0.8rem;
+  text-decoration: none;
+}
+
+.md-typeset .edgepy-author-card:hover {
+  border-color: rgba(43, 227, 210, 0.62);
+}
+
+.md-typeset .edgepy-author-card strong,
+.md-typeset .edgepy-institution-card strong {
+  color: var(--edgepy-gold);
+  display: block;
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  line-height: 1.25;
+}
+
+.md-typeset .edgepy-author-card span,
+.md-typeset .edgepy-institution-card span {
+  color: var(--edgepy-text-soft);
+  display: block;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  margin-top: 0.2rem;
+}
+
+.md-typeset .edgepy-author-avatar,
+.md-typeset .edgepy-institution-logo {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  box-shadow: none;
+  flex: 0 0 auto;
+  height: 3.5rem;
+  object-fit: cover;
+  width: 3.5rem;
+}
+
+.md-typeset .edgepy-institution-logo {
+  object-fit: contain;
+  padding: 0.35rem;
+}
+
+.md-typeset .edgepy-irdose-link {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(43, 227, 210, 0.12),
+      transparent 14rem
+    ),
+    linear-gradient(135deg, rgba(8, 12, 22, 0.96), rgba(27, 36, 54, 0.92));
+  border: 1px solid var(--edgepy-panel-border);
+  border-radius: 0.95rem;
+  color: #f8fafc;
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  margin: 1.2rem auto;
+  max-width: min(32rem, 100%);
+  padding: 0.8rem 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.md-typeset .edgepy-irdose-link span {
+  color: var(--edgepy-gold);
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.md-typeset .edgepy-irdose-link:hover {
+  border-color: rgba(43, 227, 210, 0.62);
+}
+
+.md-typeset .edgepy-irdose-logo {
+  box-shadow: none;
+  flex: 0 1 11rem;
+  max-height: 3rem;
+  min-width: 0;
+  object-fit: contain;
+}
+
+.md-typeset .edgepy-step-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  margin: 1.25rem 0;
+}
+
+.md-typeset .edgepy-step-card {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(43, 227, 210, 0.12),
+      transparent 13rem
+    ),
+    linear-gradient(135deg, rgba(8, 12, 22, 0.96), rgba(27, 36, 54, 0.94));
+  border: 1px solid var(--edgepy-panel-border);
+  border-radius: 0.9rem;
+  box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.18);
+  color: #f8fafc;
+  min-height: 8rem;
+  padding: 1rem;
+}
+
+.md-typeset .edgepy-step-card strong {
+  color: var(--edgepy-gold);
+  display: block;
+  font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  margin-bottom: 0.45rem;
+}
+
+.md-typeset .edgepy-step-card p {
+  color: var(--edgepy-text-soft);
+  margin: 0;
+}
+
+.md-typeset img[src$=".svg"]:not(.edgepy-brand-lockup) {
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.18);
+}
+
+.md-typeset .edgepy-media-frame {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(43, 227, 210, 0.14),
+      transparent 18rem
+    ),
+    linear-gradient(135deg, rgba(8, 12, 22, 0.98), rgba(27, 36, 54, 0.94));
+  border: 1px solid var(--edgepy-panel-border);
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+  margin: 1.4rem 0;
+  overflow: hidden;
+}
+
+.md-typeset .edgepy-media-frame img,
+.md-typeset .edgepy-media-frame video {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.md-typeset .edgepy-media-frame figcaption {
+  color: var(--edgepy-text-soft);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  padding: 0.75rem 0.9rem 0.9rem;
+}
+
+.md-typeset .edgepy-media-frame figcaption strong {
+  color: var(--edgepy-gold);
+}
+
+.md-typeset .edgepy-media-frame--wide {
+  margin: 1.6rem 0 2rem;
+}
+
+.md-typeset .edgepy-about-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  margin: 1.4rem 0 2rem;
+}
+
+.md-typeset .edgepy-about-grid .edgepy-media-frame {
+  margin: 0;
+}
+
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--edgepy-cyan);
+}
+
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary {
+  background-color: var(--edgepy-tip-bg);
+}
+
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: var(--edgepy-blue);
+}
+
+.md-typeset .admonition.info > .admonition-title,
+.md-typeset details.info > summary {
+  background-color: var(--edgepy-info-bg);
+}
+
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  border-color: var(--edgepy-gold);
+}
+
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary {
+  background-color: var(--edgepy-success-bg);
+}
+
+.tip p {
+  font-size: 0.8rem !important;
+}
+
+.md-footer .edgepy-footer-brand {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.75rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.md-footer .edgepy-footer-logo {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 0.65rem;
+  flex: 0 0 auto;
+  height: 3.25rem;
+  object-fit: contain;
+  padding: 0.35rem;
+  width: 3.25rem;
+}
+
+.md-footer .edgepy-footer-brand strong {
+  color: var(--edgepy-gold);
+}
+
+.md-footer .edgepy-footer-brand a {
+  color: var(--edgepy-cyan);
+}
+
+@media screen and (max-width: 42rem) {
+  .md-typeset .edgepy-author-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .md-typeset .edgepy-irdose-link {
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .md-typeset .edgepy-irdose-link span {
+    white-space: normal;
+  }
+
+  .md-typeset .edgepy-irdose-logo {
+    max-width: min(13rem, 100%);
+  }
+
+  .md-footer .edgepy-footer-brand {
+    align-items: flex-start;
+  }
+}

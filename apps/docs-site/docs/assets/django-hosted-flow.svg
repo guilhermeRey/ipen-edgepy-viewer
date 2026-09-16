@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Fluxo Django hosted do EdgePy Viewer</title>
+  <desc id="desc">Diagrama mostrando o navegador carregando o EdgePy Viewer, buscando o manifesto no Django e baixando arquivos clínicos autorizados.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2BE3D2" />
+    </marker>
+    <style>
+      .box { fill: #101827; stroke: #2BE3D2; stroke-width: 2; rx: 18; }
+      .host { fill: #111A2D; }
+      .viewer { fill: #0B2A31; }
+      .data { fill: #17213A; }
+      .title { font: 700 22px "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFD23F; }
+      .text { font: 16px "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #F8FAFC; }
+      .small { font: 14px "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #B6C7D8; }
+      .arrow { stroke: #2BE3D2; stroke-width: 2.5; marker-end: url(#arrow); fill: none; }
+    </style>
+  </defs>
+
+  <rect x="40" y="56" width="240" height="126" class="box host" />
+  <text x="66" y="96" class="title">Django</text>
+  <text x="66" y="128" class="text">Autenticação e permissões</text>
+  <text x="66" y="154" class="small">Página /studies/&lt;id&gt;/viewer/</text>
+
+  <rect x="360" y="56" width="240" height="126" class="box viewer" />
+  <text x="386" y="96" class="title">EdgePy Viewer</text>
+  <text x="386" y="128" class="text">Bundle hosted estático</text>
+  <text x="386" y="154" class="small">JS, CSS e workers em static/</text>
+
+  <rect x="680" y="56" width="240" height="126" class="box data" />
+  <text x="706" y="96" class="title">Dados clínicos</text>
+  <text x="706" y="128" class="text">ZIPs, DICOM, máscaras</text>
+  <text x="706" y="154" class="small">Downloads protegidos por sessão</text>
+
+  <rect x="200" y="260" width="560" height="104" class="box" />
+  <text x="226" y="302" class="title">HostAssetManifest</text>
+  <text x="226" y="334" class="text">Contrato JSON com paths lógicos e URLs same-origin</text>
+
+  <path d="M280 119 H360" class="arrow" />
+  <path d="M480 182 V260" class="arrow" />
+  <path d="M760 260 V182" class="arrow" />
+  <path d="M600 119 H680" class="arrow" />
+
+  <text x="302" y="103" class="small">carrega</text>
+  <text x="504" y="224" class="small">busca manifesto</text>
+  <text x="666" y="224" class="small">baixa assets</text>
+  <text x="622" y="103" class="small">renderiza</text>
+</svg>

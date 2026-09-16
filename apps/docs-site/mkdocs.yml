@@ -1,0 +1,81 @@
+site_name: EdgePy Viewer
+site_description: Documentação pública do EdgePy Viewer
+site_url: https://guilhermerey.github.io/ipen-edgepy-viewer/
+repo_name: guilhermeRey/ipen-edgepy-viewer
+repo_url: https://github.com/guilhermeRey/ipen-edgepy-viewer
+copyright: Copyright 2026 IPEN-CNEN/SP · Apache-2.0
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/edgepy-mark.svg
+  favicon: assets/edgepy-mark.svg
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Mudar para modo escuro
+    - scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para modo claro
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+
+extra_css:
+  - stylesheets/edgepy.css
+
+plugins:
+  - search
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
+      skip_classes:
+        - edgepy-brand-lockup
+
+nav:
+  - Início: index.md
+  - Downloads: downloads.md
+  - How-to:
+      - Como integrar com um app Django: how-to/integrar-django.md
+      - Como usar o editor PyScript: how-to/usar-pyscript.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
