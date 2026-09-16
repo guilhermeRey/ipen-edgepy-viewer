@@ -14,7 +14,7 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.2"
   },
   "devDependencies": {
     "typescript": "^5.9.0",
