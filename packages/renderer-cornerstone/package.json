@@ -22,7 +22,7 @@
     "comlink": "^4.4.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.0",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.6"
   }
 }
