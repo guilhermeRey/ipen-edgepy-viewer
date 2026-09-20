@@ -21,7 +21,7 @@
     "@pycom-next/pyodide-agents": "0.2.0",
     "@pycom-next/react-viewer": "0.2.0",
     "@pycom-next/renderer-cornerstone": "0.2.0",
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.2"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.0",
