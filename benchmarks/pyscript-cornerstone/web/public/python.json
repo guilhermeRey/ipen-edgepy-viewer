@@ -1,0 +1,8 @@
+{
+  "interpreter": "https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.mjs",
+  "packages": ["pydicom==3.0.1", "numpy==2.0.2"],
+  "files": {
+    "./window_level.py": "./window_level.py",
+    "./rgba_slice_mapper.py": "./rgba_slice_mapper.py"
+  }
+}

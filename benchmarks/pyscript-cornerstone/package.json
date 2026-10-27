@@ -1,0 +1,18 @@
+{
+  "name": "edgepy-pyscript-cornerstone-benchmark",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "build": "vite build --config vite.config.mjs",
+    "collect": "node scripts/run.mjs"
+  },
+  "dependencies": {
+    "@cornerstonejs/core": "4.22.13",
+    "@cornerstonejs/dicom-image-loader": "4.22.13",
+    "comlink": "4.4.2",
+    "vite": "7.3.3"
+  }
+}

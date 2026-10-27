@@ -92,6 +92,18 @@ Consulte [Como usar o editor PyScript](apps/docs-site/docs/how-to/usar-pyscript.
 
 ## Documentação
 
+### Reprodução do teste quantitativo
+
+O pacote [PyScript × Cornerstone](benchmarks/pyscript-cornerstone/README.md) baixa a série pública de objeto simulador do TCIA, confere os pixels e executa o teste de leitura/decodificação no navegador. Requer Python 3.11, Node.js 22.12 ou superior e Chrome/Chromium:
+
+```bash
+python3.11 benchmarks/pyscript-cornerstone/reproduce.py
+```
+
+As dependências do teste são instaladas em seu próprio diretório. Cada execução produz novos registros e gráficos; consulte o README do pacote para o protocolo, as versões e a procedência dos dados.
+
+### Documentação da aplicação
+
 ```bash
 npm run docs:setup
 npm run docs:dev
