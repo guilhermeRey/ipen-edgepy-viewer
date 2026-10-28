@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "typescript": "^5.9.0",
-    "vitest": "^4.1.6"
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "@pycom-next/core": "0.3.0",
