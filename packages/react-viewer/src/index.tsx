@@ -32,6 +32,10 @@ export type {
   ClinicalViewportOverlayAssets,
   ClinicalViewportOverlayRenderStatus,
   ClinicalViewportImageData,
+  ClinicalViewportImageIdentity,
+  ClinicalViewportRoi,
+  ClinicalViewportRoiOptions,
+  ClinicalViewportRoiSession,
   ClinicalViewportRenderContext,
   ClinicalViewportRenderer,
   ClinicalViewportRendererHandle,
@@ -40,6 +44,7 @@ export type {
   ClinicalViewportTemporaryOverlay,
 } from "./ports/viewportRenderer";
 export type { ViewerCustomPanel, ViewerCustomPanelPresentation } from "./components/ViewerDrawers";
+export { bindRectangularRoi, type RectangularRoiBinding } from "./presentation/rectangularRoi";
 
 export interface PycomClinicalViewerNextProps {
   study: ClinicalStudy;

@@ -42,11 +42,36 @@ export interface ClinicalViewportRenderer {
 export interface ClinicalViewportRendererHandle {
   destroy(): void;
   getCurrentImageData?(): Promise<ClinicalViewportImageData | undefined>;
+  /** Starts exclusive selection on the main image. Undefined means unavailable or stale. */
+  beginRectangularRoi?(options: ClinicalViewportRoiOptions): ClinicalViewportRoiSession | undefined;
   jumpToRtstructRoi?(overlayUid: string, roiNumber: number): boolean | Promise<boolean>;
   resetView?(): boolean | Promise<boolean>;
   setSliceIndex?(sliceIndex: number): boolean | Promise<boolean>;
   setTemporaryOverlay?(overlay: ClinicalViewportTemporaryOverlay | undefined): boolean | Promise<boolean>;
   update?(context: ClinicalViewportRenderContext): void | Promise<void>;
+}
+
+/** Integer pixel boundaries, with exclusive upper limits. */
+export interface ClinicalViewportRoi {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+}
+
+export type ClinicalViewportImageIdentity = Omit<ClinicalViewportImageData, "values">;
+
+export interface ClinicalViewportRoiOptions {
+  image: ClinicalViewportImageIdentity;
+  /** Undefined invalidates the session when its image leaves the viewport. */
+  onChange(selection: { image: ClinicalViewportImageIdentity; roi: ClinicalViewportRoi } | undefined): void;
+}
+
+export interface ClinicalViewportRoiSession {
+  /** Updates the outline and notifies onChange. False means invalid coordinates or stale session. */
+  setRoi(roi: ClinicalViewportRoi): boolean;
+  /** Removes the outline and listeners. Safe to call more than once. */
+  dispose(): void;
 }
 
 export interface ClinicalViewportImageData {

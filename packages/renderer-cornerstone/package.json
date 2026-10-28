@@ -1,6 +1,6 @@
 {
   "name": "@pycom-next/renderer-cornerstone",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
@@ -16,9 +16,9 @@
   "dependencies": {
     "@cornerstonejs/core": "^4.22.4",
     "@cornerstonejs/dicom-image-loader": "^4.22.4",
-    "@pycom-next/core": "0.2.0",
-    "@pycom-next/dicom": "0.2.0",
-    "@pycom-next/react-viewer": "0.2.0",
+    "@pycom-next/core": "0.3.0",
+    "@pycom-next/dicom": "0.3.0",
+    "@pycom-next/react-viewer": "0.3.0",
     "comlink": "^4.4.2"
   },
   "devDependencies": {

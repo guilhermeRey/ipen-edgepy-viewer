@@ -8,7 +8,9 @@ Este repositório apresenta uma versão preliminar do software desenvolvido no c
 
 ## Versão publicada
 
-Esta primeira publicação pública foi extraída da versão implantada em [app.edgepy.dev](https://app.edgepy.dev), correspondente ao commit `a253423bf7d84b43b498a5e4acf69d0691a1de57` do repositório de desenvolvimento original.
+A versão atual é **[v0.3.0](https://github.com/guilhermeRey/ipen-edgepy-viewer/releases/tag/v0.3.0)**. Ela acrescenta seleção retangular de ROI diretamente no viewport por `beginRectangularRoi()`, implementada no adaptador Cornerstone. Consulte as [notas da release](docs/release-0.3.0.md).
+
+A primeira publicação pública foi extraída da versão implantada em [app.edgepy.dev](https://app.edgepy.dev), correspondente ao commit `a253423bf7d84b43b498a5e4acf69d0691a1de57` do repositório de desenvolvimento original.
 
 O código funcional do viewer foi preservado. A distribuição pública usa histórico novo e exclui dados clínicos, mídia derivada de pacientes, artefatos internos e binários gerados sem documentação de redistribuição.
 
@@ -22,6 +24,7 @@ O código funcional do viewer foi preservado. A distribuição pública usa hist
 - PyScript Lab com editor, exemplos, controle de worker e overlay 2D temporário.
 - Layouts lateral, inferior e tela cheia para o editor.
 - Processamento de pixels e voxels no cliente, sem backend Python obrigatório.
+- API de seleção retangular no viewport para painéis de histograma e outras análises de regiões.
 
 ## Arquitetura
 
@@ -91,6 +94,10 @@ O painel `Agents` executa Python localmente com PyScript 2026.7.2 e Pyodide 0.28
 Consulte [Como usar o editor PyScript](apps/docs-site/docs/how-to/usar-pyscript.md) para os objetos disponíveis, exemplos e requisitos de CSP.
 
 ## Documentação
+
+### Extensões e seleção de ROI
+
+O handle público oferece `getCurrentImageData()` e, desde a v0.3.0, `beginRectangularRoi()`. Painéis podem receber as coordenadas da seleção sem acessar os objetos internos do Cornerstone. Consulte o [contrato e ciclo de vida da ROI](apps/docs-site/docs/how-to/selecionar-roi.md) e a trilha [Criando seu componente](https://docs.edgepy.dev/how-to/componentes/comece-aqui/).
 
 ### Reprodução do teste quantitativo
 

@@ -9,17 +9,17 @@ import { jumpToRtstructRoiSlice, publishViewportState, setViewportSliceIndex } f
 import {
   bindViewportResize,
   bindWheelStackNavigation,
-  nextAnimationFrame,
   waitForElementSize,
-  withTimeout,
   type StackViewportLike,
 } from "./cornerstoneViewportLifecycle";
 import { cornerstoneCurrentImageData, sameImageShape } from "./cornerstoneCurrentImage";
+import { prepareStackViewport } from "./cornerstoneStackSetup";
+import { beginCornerstoneRoi } from "./cornerstoneRoi";
+import type { RectangularRoiBinding } from "@pycom-next/react-viewer";
 import { createTemporaryOverlayRenderer, type TemporaryOverlayRenderer } from "./temporaryOverlayRenderer";
 import type { CornerstoneStackHandle, MountCornerstoneStackOptions, RenderingEngineLike, ViewportUpdateOptions } from "./cornerstoneStackTypes";
 
 export const cornerstoneRendererId = "cornerstone";
-const SET_STACK_TIMEOUT_MS = 15000;
 
 let cornerstoneInitialized = false;
 let nextRenderingEngineId = 1;
@@ -83,6 +83,9 @@ export function createCornerstoneStackRenderer(): ClinicalViewportRenderer {
         async getCurrentImageData() {
           return disposed ? undefined : handle?.getCurrentImageData();
         },
+        beginRectangularRoi(options) {
+          return disposed ? undefined : handle?.beginRectangularRoi(options);
+        },
         jumpToRtstructRoi(overlayUid, roiNumber) {
           return handle?.jumpToRtstructRoi(overlayUid, roiNumber) ?? false;
         },
@@ -144,7 +147,18 @@ async function mountCornerstoneStack(options: MountCornerstoneStackOptions): Pro
   const rtstructCache = createRtstructMetadataCache();
   let overlayState: CornerstoneOverlayState | undefined;
   let temporaryOverlayRenderer: TemporaryOverlayRenderer | undefined;
+  let roiSelection: RectangularRoiBinding | undefined;
   let currentOverlayGroups = overlayGroups;
+
+  const disposeResources = () => {
+    lifecycleAbort.abort();
+    roiSelection?.invalidate();
+    overlayState?.dispose();
+    temporaryOverlayRenderer?.dispose();
+    disposeRtstructMetadataCache(rtstructCache);
+    renderingEngine.destroy();
+    removeDicomFileImageIds(fileManager, imageIds);
+  };
 
   const replaceOverlayState = async (nextOptions: ViewportUpdateOptions & { viewport: StackViewportLike }) => {
     const { functionalAssets: nextFunctionalAssets, overlayGroups: nextOverlayGroups, functionalOpacity: nextFunctionalOpacity, functionalColormap: nextFunctionalColormap, viewport } = nextOptions;
@@ -179,18 +193,7 @@ async function mountCornerstoneStack(options: MountCornerstoneStackOptions): Pro
       onStatus,
     });
     onStatus(`Setting DICOM stack ${initialImageIndex + 1}/${imageIds.length}...`);
-    await withTimeout(
-      viewport.setStack(imageIds, initialImageIndex),
-      SET_STACK_TIMEOUT_MS,
-      `Cornerstone setStack timed out after ${SET_STACK_TIMEOUT_MS}ms. Decode worker may be unavailable or the selected DICOM asset may be invalid.`,
-    );
-    viewport.resetCamera({ resetPan: true, resetZoom: true, resetToCenter: true });
-    renderingEngine.resize(true, false);
-    applyCtWindowLevel(viewport, ctWindowLevel);
-    viewport.render();
-    await nextAnimationFrame();
-    renderingEngine.resize(true, false);
-    viewport.render();
+    await prepareStackViewport({ viewport, renderingEngine, imageIds, initialImageIndex, ctWindowLevel });
     await replaceOverlayState({ functionalAssets, overlayGroups, ctWindowLevel, functionalOpacity, functionalColormap, viewport });
     temporaryOverlayRenderer = createTemporaryOverlayRenderer({ element, viewport, baseAssets: assets, onStatus });
     publishViewportState(onViewportState, viewport, imageIds.length);
@@ -203,14 +206,7 @@ async function mountCornerstoneStack(options: MountCornerstoneStackOptions): Pro
     bindViewportResize({ element, renderingEngine, viewport, signal: lifecycleAbort.signal, onSliceChange: redrawOverlays });
 
     return {
-      destroy() {
-        lifecycleAbort.abort();
-        overlayState?.dispose();
-        temporaryOverlayRenderer?.dispose();
-        disposeRtstructMetadataCache(rtstructCache);
-        renderingEngine.destroy();
-        removeDicomFileImageIds(fileManager, imageIds);
-      },
+      destroy: disposeResources,
       async updateViewport(nextOptions) {
         applyCtWindowLevel(viewport, nextOptions.ctWindowLevel);
         await replaceOverlayState({ ...nextOptions, viewport });
@@ -231,6 +227,11 @@ async function mountCornerstoneStack(options: MountCornerstoneStackOptions): Pro
         return changed;
       },
       getCurrentImageData() { return cornerstoneCurrentImageData({ assets, imageIds, viewport, loadImage: imageLoader.loadAndCacheImage }); },
+      beginRectangularRoi(options) {
+        roiSelection?.invalidate();
+        roiSelection = beginCornerstoneRoi(element, viewport, options);
+        return roiSelection;
+      },
       setTemporaryOverlay(overlay) { return temporaryOverlayRenderer?.set(overlay) ?? false; },
       async jumpToRtstructRoi(overlayUid, roiNumber) {
         return jumpToRtstructRoiSlice({
@@ -249,12 +250,7 @@ async function mountCornerstoneStack(options: MountCornerstoneStackOptions): Pro
       },
     };
   } catch (error) {
-    lifecycleAbort.abort();
-    overlayState?.dispose();
-    temporaryOverlayRenderer?.dispose();
-    disposeRtstructMetadataCache(rtstructCache);
-    renderingEngine.destroy();
-    removeDicomFileImageIds(fileManager, imageIds);
+    disposeResources();
     throw error;
   }
 }

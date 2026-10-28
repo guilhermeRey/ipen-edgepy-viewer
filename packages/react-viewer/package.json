@@ -1,6 +1,6 @@
 {
   "name": "@pycom-next/react-viewer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "./src/index.tsx",
@@ -16,7 +16,7 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
-    "@pycom-next/core": "0.2.0"
+    "@pycom-next/core": "0.3.0"
   },
   "peerDependencies": {
     "react": ">=19.0.0"

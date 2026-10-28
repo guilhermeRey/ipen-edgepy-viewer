@@ -5,6 +5,7 @@ O código-fonte do EdgePy Viewer está disponível no GitHub sob Apache License 
 ```bash
 git clone https://github.com/guilhermeRey/ipen-edgepy-viewer.git
 cd ipen-edgepy-viewer
+git checkout v0.3.0
 npm ci
 ```
 
@@ -25,6 +26,8 @@ npm run build
 O build standalone fica em `apps/viewer-demo/dist/`.
 
 ## Build hosted
+
+O pacote pronto da v0.3.0 está nos [assets da release](https://github.com/guilhermeRey/ipen-edgepy-viewer/releases/tag/v0.3.0), acompanhado de `SHA256SUMS` e avisos de licença.
 
 Para integrar o viewer a Django ou outro host web:
 
@@ -51,7 +54,7 @@ Copie `clinical-viewer/` para o static root da aplicação host. Se precisar de 
 
 ```bash
 cd apps/viewer-demo/dist-hosted
-zip -r edgepy-viewer-hosted-0.2.0.zip clinical-viewer
+zip -r edgepy-viewer-hosted-0.3.0.zip clinical-viewer
 ```
 
 Antes de redistribuir um binário, inclua `LICENSE`, `NOTICE`, os avisos de terceiros aplicáveis e um checksum SHA-256.
@@ -68,4 +71,4 @@ npm run docs:setup
 npm run docs:test
 ```
 
-Os ZIPs não são versionados no repositório de código. Releases futuras devem ser publicadas como assets do GitHub Release, acompanhadas de checksum e documentação de licença.
+Os ZIPs são distribuídos como assets do GitHub Release, acompanhados de checksum e documentação de licença.

@@ -1,6 +1,6 @@
 {
   "name": "@pycom-next/dicom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
@@ -18,8 +18,8 @@
     "vitest": "^4.1.6"
   },
   "dependencies": {
-    "@pycom-next/core": "0.2.0",
-    "@pycom-next/worker-runtime": "0.2.0",
+    "@pycom-next/core": "0.3.0",
+    "@pycom-next/worker-runtime": "0.3.0",
     "dicom-parser": "^1.8.21"
   }
 }

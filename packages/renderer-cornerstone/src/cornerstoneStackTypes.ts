@@ -11,6 +11,7 @@ import type { StackViewportLike } from "./cornerstoneViewportLifecycle";
 
 export interface CornerstoneStackHandle {
   destroy(): void;
+  beginRectangularRoi: NonNullable<ClinicalViewportRendererHandle["beginRectangularRoi"]>;
   getCurrentImageData(): ReturnType<NonNullable<ClinicalViewportRendererHandle["getCurrentImageData"]>>;
   jumpToRtstructRoi(overlayUid: string, roiNumber: number): Promise<boolean>;
   resetView(): boolean;

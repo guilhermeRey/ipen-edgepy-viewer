@@ -59,6 +59,7 @@ nav:
   - How-to:
       - Como integrar com um app Django: how-to/integrar-django.md
       - Como usar o editor PyScript: how-to/usar-pyscript.md
+      - Selecionar uma ROI na imagem principal: how-to/selecionar-roi.md
 
 markdown_extensions:
   - admonition

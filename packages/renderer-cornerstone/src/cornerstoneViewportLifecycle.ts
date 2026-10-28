@@ -1,6 +1,13 @@
 export interface StackViewportLike {
   setStack(imageIds: string[], initialImageIdIndex?: number): Promise<unknown>;
   getCurrentImageIdIndex(): number;
+  getCurrentImageId?(): string;
+  canvasToWorld?(point: number[]): number[];
+  worldToCanvas?(point: number[]): [number, number];
+  getImageData?(): { dimensions: number[]; imageData: {
+    worldToIndex(point: number[]): number[];
+    indexToWorld(point: number[]): number[];
+  } } | undefined;
   setImageIdIndex(index: number): Promise<unknown>;
   setProperties?(properties: unknown): void;
   resetCamera(options?: { resetPan?: boolean; resetZoom?: boolean; resetToCenter?: boolean }): boolean;
